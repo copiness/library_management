@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 
 const Sidebar = () => {
   return (
-    <div className=" p-4 gap-4 flex  flex-col ">
+    <div className=" p-4 gap-4 flex  flex-col  sticky top-0 gap-y-4 ">
       {/* <div className="flex items-center gap-4 bg-green-300 justify-start p-4 rounded-md">
         <LayoutDashboard />
         <span className="text-2xl font-bold">Dashboard</span>
