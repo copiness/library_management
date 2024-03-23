@@ -22,13 +22,13 @@ import TopBooks from "@/components/TopBooks";
 
 const Dashboard = () => {
   return (
-    <div className="p-4  h-screen w-full">
+    <div className="p-4  w-full">
       <Navbar />
       <div className="flex w-full gap-4">
-        <div className="hidden lg:block p-2 w-1/5 h-[900px] ">
+        <div className="hidden lg:block p-2 w-1/5 h-[900px]">
           <Sidebar />
         </div>
-        <div className="p-2 lg:w-4/5 w-full h-full  bg-slate-100 lg:rounded-tl-[50px]  p-4">
+        <div className="p-2 lg:w-4/5 w-full h-fit  bg-slate-100 lg:rounded-tl-[50px]  ">
           <div className="m-4 flex gap-6">
             <span className="text-3xl font-bold">Hello</span>
             <span className="text-3xl text-orange-600 font-bold">Admin!</span>
