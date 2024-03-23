@@ -64,6 +64,9 @@ const Dashboard = () => {
           <div className="p-4">
             <span className="font-bold ">Top Books</span>
             <TopBooks/>
+            <TopBooks/>
+            <TopBooks/>
+            <TopBooks/>
           </div>
           
         </div>
