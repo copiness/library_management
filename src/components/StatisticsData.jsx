@@ -1,11 +1,8 @@
 import React from 'react'
+import { Bar } from 'react-chartjs-2';
 
 const StatisticsData = () => {
-  return (
-    <div className='bg-white rounded-md p-2 mt-2 h-32 w-full'>
-      
-    </div>
-  )
+  
 }
 
 export default StatisticsData

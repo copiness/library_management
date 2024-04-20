@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -16,8 +16,19 @@ import {
 } from "@/components/ui/hover-card";
 import { Button } from "./ui/button";
 import { userList } from "@/dummyData";
+import { useNavigate } from "react-router-dom";
 
-const Tablecontainer = ({}) => {
+
+
+const Tablecontainer = ({users}) => {
+
+  
+ var topuser= (users.slice(0,5))
+
+ const navigate = useNavigate() 
+
+  
+  
   return (
     <div className="w-full bg-white rounded-lg p-4">
       <div className="flex items-center justify-between ">
@@ -34,11 +45,11 @@ const Tablecontainer = ({}) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {userList.map((item) => (
+          {topuser.map((item) => (
             <TableRow>
-              <TableCell className="w-1/6">{item.id}</TableCell>
-              <TableCell className="w-2/6">{item.name}</TableCell>
-              <TableCell className="w-2/6">{item.bookIssued}</TableCell>
+              <TableCell className="w-1/6">{item?.userid}</TableCell>
+                <TableCell className="w-2/6">{item?.username}</TableCell>
+                 <TableCell className="w-2/6">{item?.lastbook.bookname?item?.lastbook.bookname:'No bok found'}</TableCell> 
               <TableCell className="w-1/6">
                 <HoverCard>
                   <HoverCardTrigger>
@@ -56,7 +67,7 @@ const Tablecontainer = ({}) => {
       </Table>
 
       <div className="w-full flex flex-row-reverse">
-        <span className="text-orange-600 font-semibold">see all</span>
+        <span className="text-orange-600 font-semibold cursor-pointer"  onClick={()=>navigate('/member')}>see all</span>
       </div>
     </div>
   );

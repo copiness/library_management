@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
@@ -14,16 +14,61 @@ import {
   Users,
 } from "lucide-react";
 import {bookList,userList} from "@/dummyData"
-import Tablecontainer from "@/components/Tablecontainer";
+import Tablecontainer from "@/components/UserTablecontainer";
 import BookTableContainer from "@/components/BookTablContainer";
 import TopBooks from "@/components/TopBooks";
 import OverdueBooklist from "@/components/OverdueBooklist";
 import BookIssued from "@/components/BookIssued";
 import StatisticsData from "@/components/StatisticsData";
+import axios from "axios";
 
 
 
 const Dashboard = () => {
+
+  const URL = "https://library-management-backend-zf8y.onrender.com";
+  const [users,setusers]= useState([])
+  const [books,setbooks] = useState([])
+  const [overdueusers,setoverdueusers] = useState([])
+  
+
+  useEffect(() => {
+    const getuser = async () => {
+      try {
+        const res = await axios.get(`${URL}/api/user/getusers`);
+        setusers(res.data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+    const getbook = async () => {
+      try {
+        const res = await axios.get(`${URL}/api/book/getbook`)
+        setbooks(res.data);
+      } catch (error) {
+         console.error("Error fetching books:" , error)
+      }
+    }
+
+    const getoverrdueusers = async () => {
+      try {
+        const res = await axios.get(`${URL}/api/user/getoverduesubscribers`)
+        setoverdueusers(res.data)
+      } catch (error) {
+        console.error("Error fetching users:" ,error)
+      }
+    }
+  
+    getuser();
+    getbook();
+    getoverrdueusers()
+  }, []); // Empty dependency array means this effect runs only once on component mount
+
+
+  
+  
+  console.log(users);
+
   return (
     <div className="p-4  w-full">
       <Navbar />
@@ -57,9 +102,9 @@ const Dashboard = () => {
           </div>
           {/* TABLE-CONTAINER */}
           <div className="p-4 w-full flex lg:flex-row flex-col gap-2 items-center justify-between">
-            <div className="lg:w-1/2 w-full"><Tablecontainer /></div>
+            <div className="lg:w-1/2 w-full"><Tablecontainer users={users}/></div>
             
-            <div className="lg:w-1/2 w-full"><BookTableContainer/></div>
+            <div className="lg:w-1/2 w-full"><BookTableContainer books={books}/></div>
         
           </div>
 
@@ -72,19 +117,10 @@ const Dashboard = () => {
 
           {/* overdue booklist */}
           <div className="p-4 hidden md:block">
-            <OverdueBooklist/>
+            <OverdueBooklist users={overdueusers}/>
           </div>
 
-          <div className="p-4 w-full flex justify-between items-center gap-2">
-            <div className="w-3/5">
-              <BookIssued/>
-            </div>
-            <div className="w-2/5">
-              <StatisticsData/>
-            </div>
-            
-            
-          </div>
+          
           
         </div>
       </div>

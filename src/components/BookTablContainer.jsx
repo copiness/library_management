@@ -17,8 +17,12 @@ import {
 } from "@/components/ui/hover-card";
 import { Button } from "./ui/button";
 import { bookList } from "@/dummyData";
+import { useNavigate } from "react-router-dom";
 
-const BookTableContainer = ({}) => {
+const BookTableContainer = ({books}) => {
+  const navigate = useNavigate()
+
+  const topfivebook= (books.slice(0,5))
   return (
     <div className="w-full bg-white rounded-lg p-4">
       <div className="flex items-center justify-between ">
@@ -35,18 +39,18 @@ const BookTableContainer = ({}) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {bookList.map((item) => (
+          {topfivebook.map((item) => (
             <TableRow>
-              <TableCell className="w-1/6">{item.bookId}</TableCell>
-              <TableCell className="w-2/6">{item.title}</TableCell>
-              <TableCell className="w-2/6">{item.author}</TableCell>
+              <TableCell className="w-1/6">{item.bookid}</TableCell>
+              <TableCell className="w-2/6">{item.bookname}</TableCell>
+              <TableCell className="w-2/6">{item.authorname}</TableCell>
               <TableCell className="w-1/6">{item.available}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
       <div className="w-full flex flex-row-reverse">
-        <span className="text-orange-600 font-semibold">see all</span>
+        <span className="text-orange-600 font-semibold cursor-pointer" onClick={()=>navigate('/books')}>see all</span>
       </div>
     </div>
   );

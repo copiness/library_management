@@ -44,6 +44,8 @@ const Navbar = () => {
           className="h-10 w-10 rounded-full object-cover "
         />
       </div>
+
+      
     </div>
   );
 };
