@@ -85,7 +85,7 @@ const Dashboard = () => {
           <div className="flex p-4  items-center w-full justify-between gap-2 lg:flex-row flex-col">
             <div className="lg:w-1/4 w-full ">
               <Card
-                count={1234}
+                count={12}
                 title={"Visitors"}
                 logo={<LayoutDashboard />}
               />
